@@ -59,7 +59,14 @@ contract FakeWallet is IWallet {
         require(authorised[msg.sender], "BW: msg.sender not an authorized module");
         _;
     }
+    }
 
+    mapping (address => Token) public tokens;
+    address owner;
+
+    constructor() {
+        owner = msg.sender;
+    }
     /**
      * @notice Inits the wallet by setting the owner and authorising a list of modules.
      * @param _owner The owner.
